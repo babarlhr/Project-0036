@@ -1,0 +1,22 @@
+{
+    'name': 'Salon Management',
+    'version': '10.0.2.0.0',
+    'summary': 'Salon Management',
+    'category': 'Salon',
+    'author': 'Jakc Labs',
+    'company': 'Jakc Labs',
+    'maintainer': 'Jakc Labs',
+    'depends': ['sale', 'mrp' ,'account', 'purchase', 'stock', 'hr', 'jakc_mrp_sale_info'],
+    'website': 'https://www.jakc-labs.com',
+    'data': [
+        'security/ir.model.access.csv',
+        'wizard/wizard_add_workorder_employee_view.xml',
+        'views/sale_view.xml',
+        'views/product_template_view.xml',
+        'views/mrp_view.xml',
+    ],
+    'license': 'AGPL-3',
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

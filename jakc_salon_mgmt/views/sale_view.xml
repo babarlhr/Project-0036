@@ -1,0 +1,44 @@
+<odoo>
+    <record id="view_order_inherit_form" model="ir.ui.view">
+        <field name="name">order.inherit.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree[1]/field[@name='name']" position="after">
+                <field name="employee_id"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form[1]/group[1]/group[1]/field[@name='product_id']" position="after">
+                <field name="employee_id"/>
+            </xpath>
+            <xpath expr="//notebook/page[1]" position="after">
+                <page string="Productions">
+                    <field name="production_ids">
+                        <tree>
+                            <field name="name"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Work Orders">
+                    <field name="workorder_ids">
+                        <tree>
+                            <field name="name"/>
+                            <field name="workcenter_id"/>
+                            <button name="%(jakc_salon_mgmt.act_start_workorder)d"
+                                        string="Start Workorder"
+                                        icon="fa-check-circle-o"
+                                        type="action"
+                            />
+                            <button name="trans_request_qc"
+                                        string="Request for QC"
+                                        icon="fa-external-link"
+                                        type="object"
+                            />
+                            <field name="state"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

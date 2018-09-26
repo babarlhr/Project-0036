@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="wizard_start_workorder_form_view" model="ir.ui.view">
+            <field name="name">wizard.start.workoder.form</field>
+            <field name="model">wizard.start.workorder</field>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <form string="Start Workorder">
+                    <group>
+                        <field name="workorder_id"/>
+                        <field name="user_id"/>
+                    </group>
+                     <footer>
+                        <button name="start_workorder" type="object" string="Start Workorder" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+         <record id="act_start_workorder" model="ir.actions.act_window">
+            <field name="name">Start Workorder</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.start.workorder</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="wizard_start_workorder_form_view"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="wizard_workorder_barcode_form_view" model="ir.ui.view">
+            <field name="name">wizard.workorder.barcode.form</field>
+            <field name="model">wizard.workorder.barcode</field>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <form string="Workorder Barcode">
+                    <group>
+                        <field name="barcode"/>
+                        <field name="workorder_id"/>
+                    </group>
+                     <footer>
+                        <button name="process_barcode" type="object" string="Process" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+         <record id="act_workorder_barcode" model="ir.actions.act_window">
+            <field name="name">Workorder Barcode</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.workorder.barcode</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="wizard_workorder_barcode_form_view"/>
+        </record>
+
+    </data>
+</odoo>

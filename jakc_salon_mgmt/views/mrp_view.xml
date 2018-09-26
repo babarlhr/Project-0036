@@ -1,0 +1,15 @@
+<odoo>
+    <record id="" model="ir.ui.view">
+        <field name=""></field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workcenter_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='button_start']" position="after">
+                <button name="%{act_add_workorder_employee}d" string="Add Employee" type="action" class="oe_highlight" states="pending,ready,progress"/>
+            </xpath>
+            <xpath expr="//fields[@name='production_id']" position="after">
+                <field name="employee_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
