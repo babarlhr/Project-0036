@@ -5,18 +5,182 @@
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <page string="Pricing">
+                <page string="Packet" attrs="{'invisible':[('type','!=','packet')]}">
+                    <group>
+                        <field name="packet_product_id"/>
+                        <field name="packet_product_uom"/>
+                        <field name="packet_product_uom_qty"/>
+                    </group>
+                </page>
+                <page string="Salon"  attrs="{'invisible':[('type','!=','service')]}">
+                    <group string="Packs">
+                         <field name="product_template_pack_ids" nolabel="1">
+                             <tree editable="bottom">
+                                <field name="product_id"/>
+                                 <field name="product_uom"/>
+                                <field name="product_uom_qty"/>
+                                <field name="iface_mandatory"/>
+                             </tree>
+                         </field>
+                    </group>
+                    <group>
+                        <field name="product_template_job_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="sequence"/>
+                                <field name="iface_commission_fee"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+                <page string="Pricing"  attrs="{'invisible':[('type','!=','service')]}">
                     <field name="product_template_employee_ids">
                         <tree editable="bottom">
                             <field name="employee_id"/>
                             <field name="company_id"/>
                             <field name="list_price"/>
-                            <field name="commision_type"/>
-                            <field name="commision_fixed"/>
-                            <field name="commision_percentage"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="state"/>
                         </tree>
                     </field>
                 </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_job_category_form" model="ir.ui.view">
+        <field name="name">product.job.category.form</field>
+        <field name="model">product.job.category</field>
+        <field name="arch" type="xml">
+            <form string="Product Job Category">
+                <group>
+                    <field name="name"/>
+                </group>
+                <notebook>
+                    <page string="Product Jobs">
+                        <field name="job_line_ids">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Commissions">
+                        <field name="line_ids">
+                            <tree editable="bottom">
+                                <field name="commission_type_id"/>
+                                <field name="company_id"/>
+                                <field name="date_start"/>
+                                <field name="date_end"/>
+                                <field name="commision_calculation_method"/>
+                                <field name="commision_calculation_type"/>
+                                <field name="commision_fixed"/>
+                                <field name="commision_percentage"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_product_job_category_tree" model="ir.ui.view">
+        <field name="name">product.job.category.form</field>
+        <field name="model">product.job.category</field>
+        <field name="arch" type="xml">
+            <tree string="Product Job Category">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_product_job_category">
+        <field name="name">Product Job Category</field>
+        <field name="res_model">product.job.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_sale_product_job_category" parent="menu_sales_job"
+			action="action_product_job_category" sequence="10" />
+
+    <record id="view_product_job_form" model="ir.ui.view">
+        <field name="name">product.job.form</field>
+        <field name="model">product.job</field>
+        <field name="arch" type="xml">
+            <form string="Product Job">
+                <group>
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                </group>
+                <notebook>
+                    <page string="Commissions">
+                        <field name="line_ids">
+                            <tree editable="bottom">
+                                <field name="commission_type_id"/>
+                                <field name="company_id"/>
+                                <field name="date_start"/>
+                                <field name="date_end"/>
+                                <field name="commision_calculation_method"/>
+                                <field name="commision_calculation_type"/>
+                                <field name="commision_fixed"/>
+                                <field name="commision_percentage"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_product_job_tree" model="ir.ui.view">
+        <field name="name">product.job.form</field>
+        <field name="model">product.job</field>
+        <field name="arch" type="xml">
+            <tree string="Product Job">
+                <field name="name"/>
+                <field name="parent_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_product_job">
+        <field name="name">Product Job</field>
+        <field name="res_model">product.job</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_sales_job" name="Jobs"
+			parent="sales_team.menu_base_partner"
+			sequence="50" />
+
+    <menuitem id="menu_sale_product_job" parent="menu_sales_job"
+			action="action_product_job" sequence="20" />
+
+    <record id="view_product_category_inherit_form" model="ir.ui.view">
+        <field name="name">product.category.inherit.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="account.view_category_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Comissions">
+                        <field name="line_ids">
+                           <tree editable="bottom">
+                                <field name="commission_type_id"/>
+                                <field name="company_id"/>
+                                <field name="date_start"/>
+                                <field name="date_end"/>
+                                <field name="commision_calculation_method"/>
+                                <field name="commision_calculation_type"/>
+                                <field name="commision_fixed"/>
+                                <field name="commision_percentage"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
             </xpath>
         </field>
     </record>

@@ -9,7 +9,7 @@
                 <form string="Start Workorder">
                     <group>
                         <field name="workorder_id"/>
-                        <field name="user_id"/>
+                        <field name="employee_id"/>
                     </group>
                      <footer>
                         <button name="start_workorder" type="object" string="Start Workorder" class="oe_highlight"/>

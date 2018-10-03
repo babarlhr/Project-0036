@@ -8,7 +8,6 @@
             <field name="arch" type="xml">
                 <form string="Add Workorder Employee">
                     <group>
-                        <field name="workorder_id"/>
                         <field name="employee_id"/>
                     </group>
                      <footer>

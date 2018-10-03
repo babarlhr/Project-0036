@@ -2,6 +2,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError, Warning
 from random import random, randint
 
+
 class MrpRoutingWorkcenter(models.Model):
     _inherit = 'mrp.routing.workcenter'
 
@@ -19,9 +20,17 @@ class MrpWorkorder(models.Model):
     iface_stylist = fields.Boolean('Stylist Here', default=False, readonly=True)
     barcode = fields.Char('Barcode', size=20)
     employee_id = fields.Many2one('hr.employee', 'Responsible')
+    employee_commision_id = fields.Many2one('hr.employee.commision','Commision', readonly=True)
+
 
     @api.model
     def create(self, vals):
         barcode = self._random_with_N_digits()
         vals.update({'barcode', barcode})
         return super(MrpWorkorder, self).create(vals)
+
+
+class MrpWorkcenterProductivity(models.Model):
+    _inherit = 'mrp.workcenter.productivity'
+
+    employee_id = fields.Many2one('hr.employee','Employee')

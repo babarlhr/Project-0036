@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_employeecommission_detail_document">
+            <div class="page">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <img t-if="res_company.logo" t-att-src="'data:image/png;base64,%s' %res_company.logo" width="200px;"/>
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="row">
+                            <h2><strong>Employee Commission Detail Report</strong></h2>
+                        </div>
+                        <div class="row">
+                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y %H:%M')"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <span><![CDATA[&nbsp;]]></span>
+                </div>
+                <div class="row" style="text-align: center;">
+                    <div class="col-xs-3">
+                        <span>Periode Date:</span>
+                    </div>
+                    <div class="col-xs-9">
+                        <span t-esc="o.name"/>
+                    </div>
+                </div>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Employee</th>
+                            <th>Sale Order</th>
+                            <th>Sale Order Line</th>
+                            <th>Job</th>
+                            <th>Method</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="no" t-value="0"/>
+                        <t t-foreach="o.hr_employee_commission_ids" t-as="line">
+                            <t t-set="no" t-value="no + 1"/>
+                            <tr>
+                                <td><span t-esc="no"/></td>
+                                <td><span t-field="line.employee_id"/></td>
+                                <td><span t-field="line.sale_order_id"/></td>
+                                <td><span t-field="line.sale_order_line_id"/></td>
+                                <td><span t-field="line.sale_order_job_id"/></td>
+                                <td><span t-field="line.commission_calculation_method"/></td>
+                                <td><span t-field="line.commission_type"/></td>
+                                <td><span t-field="line.amount"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+
+        <template id="report_employeecommission_detail">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="jakc_salon_mgmt.report_employeecommission_detail_document"/>
+            </t>
+        </template>
+    </data>
+</odoo>

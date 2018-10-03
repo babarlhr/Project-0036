@@ -1,0 +1,9 @@
+
+Flow
+
+Booking Landing Page
+ - Find Stylist By Date , By Services dan By Location
+ - Show all posible services
+ - Choose Service for Booking
+ - Confirmation Page
+

@@ -1,0 +1,8 @@
+<odoo>
+    <data>
+
+        <menuitem id="appointment_main_menu" name="Appointment"/>
+        <menuitem name="Appointment" id="base.salon_appointment_menu" parent="appointment_main_menu"/>
+
+    </data>
+</odoo>

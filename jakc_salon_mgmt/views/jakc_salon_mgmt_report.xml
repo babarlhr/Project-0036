@@ -1,0 +1,10 @@
+<odoo>
+    <report id="report_employee_commission_detail"
+            string="Employee Commission Detail"
+            model="commission.periode"
+            report_type="qweb-pdf"
+            name="jakc_salon_mgmt.report_employeecommission_detail"
+            file="jakc_salon_mgmt.report_employeecommission_detail"
+            menu="True"
+     />
+</odoo>

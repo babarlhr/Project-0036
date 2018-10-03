@@ -1,0 +1,20 @@
+Data Migration
+
+1. Product
+2. Product Category
+3. Product Job (Include Detail Commission)
+4. Product Job Category (Include Detail Commission)
+5. Account
+6. Account Types
+7. Hr Commission Type
+
+Data Migration Step
+
+1. Import Account Types
+2. Import Account
+3. Import Product Category
+4. Import Hr Commission Type
+5. Import Product Job Category
+6. Import Product Job
+7. Import Product
+8. Import Product Service (Include Pack and Job)

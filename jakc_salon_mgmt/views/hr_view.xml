@@ -1,0 +1,137 @@
+<odoo>
+
+    <record id="view_employee_form_inherit" model="ir.ui.view">
+        <field name="name">employee.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="barcode"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Salon">
+                    <group>
+                        <field name="hr_employee_job_category_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="product_job_category_id"/>
+                                <field name="commission_type_id"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_commission_periode_form" model="ir.ui.view">
+        <field name="name">commission.periode.form</field>
+        <field name="model">commission.periode</field>
+        <field name="arch" type="xml">
+            <form string="Commission Periode">
+                <header>
+                    <button name="trans_process" type="object" string="Process" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <group>
+                    <field name="name"/>
+                </group>
+                <notebook>
+                    <page string="Commissions">
+                        <field name="hr_employee_commission_ids">
+                            <tree>
+                                <field name="employee_id"/>
+                                <field name="sale_order_id"/>
+                                <field name="sale_order_job_id"/>
+                                <field name="commission_calculation_method"/>
+                                <field name="commission_type"/>
+                                <field name="amount"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+    <record id="view_commission_periode_tree" model="ir.ui.view">
+        <field name="name">commission.periode.tree</field>
+        <field name="model">commission.periode</field>
+        <field name="arch" type="xml">
+            <tree string="Commission Periode">
+                <field name="name"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_commission_periode">
+        <field name="name">Commission Periode</field>
+        <field name="res_model">commission.periode</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+     <menuitem
+            id="menu_hr_employee_commission_root"
+            name="Commission"
+            parent="hr.menu_hr_root"
+            groups="hr.group_hr_manager,hr.group_hr_user"
+            sequence="99"/>
+
+     <menuitem
+            action="action_commission_periode"
+            name="Commission Periode"
+            id="menu_commission_periode"
+            parent="menu_hr_employee_commission_root"
+            sequence="1"
+            groups="hr.group_hr_manager"/>
+
+
+    <record id="view_hr_employee_commission_form" model="ir.ui.view">
+        <field name="name">hr.employee.commission.form</field>
+        <field name="model">hr.employee.commission</field>
+        <field name="arch" type="xml">
+            <form string="Employee Commission">
+                <group>
+                    <field name="commission_periode_id"/>
+                    <field name="employee_id"/>
+                    <field name="sale_order_id"/>
+                    <field name="sale_order_line_id"/>
+                    <field name="commission_calculation_method"/>
+                    <field name="commission_type"/>
+                    <field name="amount"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_hr_employee_commission_tree" model="ir.ui.view">
+        <field name="name">hr.employee.commission.tree</field>
+        <field name="model">hr.employee.commission</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Commission">
+                <field name="commission_periode_id"/>
+                <field name="employee_id"/>
+                <field name="sale_order_id"/>
+                <field name="sale_order_line_id"/>
+                <field name="commission_calculation_method"/>
+                <field name="commission_type"/>
+                <field name="amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hr_employee_commission">
+        <field name="name">HR Employee Commission</field>
+        <field name="res_model">hr.employee.commission</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+     <menuitem
+            action="action_hr_employee_commission"
+            name="Employee Commision"
+            id="menu_hr_employee_commission"
+            parent="menu_hr_employee_commission_root"
+            sequence="2"
+            groups="hr.group_hr_manager"/>
+
+
+
+</odoo>

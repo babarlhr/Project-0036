@@ -1,0 +1,11 @@
+<odoo>
+        <record id="action_report_parking_session_summary" model="ir.actions.act_window">
+            <field name="name">Parking Session Summary</field>
+            <field name="res_model">wizard.parking.session.summary</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_parking_session_summary" name="Parking Session Summary" action="action_report_parking_session_summary" parent="base.parking_report_menu" sequence="1"/>
+
+</odoo>
