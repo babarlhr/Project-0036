@@ -13,14 +13,13 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        for order in self:
-            order.state = 'sale'
-            order.confirmation_date = fields.Datetime.now()
-            if self.env.context.get('send_email'):
-                self.force_quotation_send()
-            order.order_line._action_procurement_create()
-            order.order_line._action_salon_create()
-        if self.env['ir.values'].get_default('sale.config.settings', 'auto_done_setting'):
+        if self._get_forbidden_state_confirm() & set(self.mapped('state')):
+            raise UserError(_(
+                'It is not allowed to confirm an order in the following states: %s'
+            ) % (', '.join(self._get_forbidden_state_confirm())))
+        self._action_confirm()
+        self.order_line._action_salon_create()
+        if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
             self.action_done()
         return True
 
@@ -64,9 +63,6 @@ class SaleOrder(models.Model):
             raise ValidationError('Error Create Stock Picking')
 
 
-
-    production_ids = fields.One2many('mrp.production','sale_id', 'Productions', readonly=True)
-    workorder_ids = fields.One2many('mrp.workorder','sale_id','Work Orders', readonly=True)
     pack_ids = fields.One2many('sale.order.pack','sale_order_id', 'Packs', readonly=False)
     job_ids = fields.One2many('sale.order.job','sale_order_id','Jobs', readonly=False)
 
@@ -84,9 +80,6 @@ class SalesOrderLine(models.Model):
             sale_order_id = line.order_id
             product_template_id = line.product_id.product_tmpl_id
             if product_template_id.type == 'service':
-                if not line.order_id.procurement_group_id:
-                    vals = line.order_id._prepare_procurement_group()
-                    line.order_id.procurement_group_id = self.env["procurement.group"].create(vals)
                 for pack_id in product_template_id.product_template_pack_ids:
                     pack_values = {}
                     pack_values.update({'sale_order_id': sale_order_id.id})

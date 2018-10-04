@@ -4,5 +4,7 @@
         <menuitem id="appointment_main_menu" name="Appointment"/>
         <menuitem name="Appointment" id="base.salon_appointment_menu" parent="appointment_main_menu"/>
 
+        <menuitem id="menu_sales_job" name="Jobs" parent="sale.sale_menu_root" sequence="50"/>
+
     </data>
 </odoo>

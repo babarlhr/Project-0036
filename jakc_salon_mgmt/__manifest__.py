@@ -1,12 +1,12 @@
 {
     'name': 'Salon Management',
-    'version': '10.0.2.0.0',
+    'version': '11.0.0.1',
     'summary': 'Salon Management',
     'category': 'Salon',
     'author': 'Jakc Labs',
     'company': 'Jakc Labs',
     'maintainer': 'Jakc Labs',
-    'depends': ['sale', 'mrp' ,'account', 'purchase', 'stock', 'hr', 'jakc_mrp_sale_info'],
+    'depends': ['sale','account', 'purchase', 'stock', 'hr',],
     'website': 'https://www.jakc-labs.com',
     'data': [
         'security/ir.model.access.csv',
@@ -15,10 +15,10 @@
         'views/booking_view.xml',
         'views/sale_view.xml',
         'views/product_template_view.xml',
-        'views/mrp_view.xml',
         'views/hr_view.xml',
         'report/report_employee_commission_templates.xml',
         'views/jakc_salon_mgmt_report.xml',
+
     ],
     'license': 'AGPL-3',
     'installable': True,

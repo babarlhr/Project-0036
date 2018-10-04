@@ -1,1 +1,1 @@
-import wizard_add_workorder_employee
+from . import wizard_add_workorder_employee

@@ -151,10 +151,6 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_sales_job" name="Jobs"
-			parent="sales_team.menu_base_partner"
-			sequence="50" />
-
     <menuitem id="menu_sale_product_job" parent="menu_sales_job"
 			action="action_product_job" sequence="20" />
 

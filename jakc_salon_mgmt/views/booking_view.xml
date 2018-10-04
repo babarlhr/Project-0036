@@ -31,7 +31,7 @@
         <field name="name">appointment.calendar</field>
         <field name="model">appointment</field>
         <field name="arch" type="xml">
-            <calendar display="[partner_id], Booking for [employee_id] at [company_id]" color="partner_id" date_start="date_appointment">
+            <calendar color="partner_id" date_start="date_appointment">
                 <field name="partner_id"/>
                 <field name="company_id"/>
                 <field name="employee_id"/>

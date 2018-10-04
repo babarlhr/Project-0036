@@ -81,7 +81,7 @@ class HrEmployeeCommissionType(models.Model):
 class HrEmployeeCommission(models.Model):
     _name = 'hr.employee.commission'
 
-    commission_periode_id = fields.Many2one('commision.periode', 'Periode #', readonly=True)
+    commission_periode_id = fields.Many2one('commission.periode', 'Periode #', readonly=True)
     employee_id = fields.Many2one('hr.employee','Employee', readonly=True)
     sale_order_id = fields.Many2one('sale.order', 'Sale Order', related='sale_order_line_id.order_id', readonly=True)
     sale_order_line_id = fields.Many2one('sale.order.line', 'Sale Order Line', readonly=True)

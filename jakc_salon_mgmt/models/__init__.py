@@ -1,5 +1,4 @@
-import sale
-import product
-import mrp
-import hr
-import booking
+from . import sale
+from . import product
+from . import hr
+from . import booking
